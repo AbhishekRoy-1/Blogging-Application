@@ -38,4 +38,7 @@ public class GlobalExceptionHandler {
 	public void TestCase(){
 		System.out.println("This is a Test for git.");
 	}
+	public void TestCaseTwo(){
+		System.out.println("This is a TestCase 2 for git.");
+	}
 }

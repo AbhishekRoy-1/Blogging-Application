@@ -24,7 +24,7 @@ import com.roy.blog.services.CommentService;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/api/")
+@RequestMapping("/api")
 public class CommentController {
 	
 	@Autowired
@@ -39,22 +39,22 @@ public class CommentController {
 	}
 	
 	//get comment by UserId
-	@GetMapping("user/{userId}/comments")
+	@GetMapping("/user/{userId}/comments")
 	public ResponseEntity<List<CommentDto>> getCommentByUser(@PathVariable Integer userId){
 		List<CommentDto> commentDtos=this.commentService.getCommentByUserId(userId);
 		return new ResponseEntity<List<CommentDto>>(commentDtos,HttpStatus.OK);		
 	}
 	
 	//get comment by PostId
-	@GetMapping("post/{postId}/comments")
+	@GetMapping("/post/{postId}/comments")
 	public ResponseEntity<List<CommentDto>> getCommentByPost(@PathVariable Integer postId){
 		List<CommentDto> commentDtos=this.commentService.getCommentByPostId(postId);
 		return new ResponseEntity<List<CommentDto>>(commentDtos,HttpStatus.OK);		
 	}
 	
 	//get comment by comment Id
-	@GetMapping("comments/{commentId}")
-	 public ResponseEntity<CommentDto> getPostByPostId(@PathVariable Integer commentId){
+	@GetMapping("/comments/{commentId}")
+	 public ResponseEntity<CommentDto> getCommentById(@PathVariable Integer commentId){
 			CommentDto commentDto= this.commentService.getCommentById(commentId);
 			return new ResponseEntity<CommentDto>(commentDto,HttpStatus.OK);
 		 }
@@ -71,7 +71,7 @@ public class CommentController {
 	
 	//update a comment
 	 @PutMapping("/comments/{commentId}")
-	 public ResponseEntity<CommentDto> updatePost(@RequestBody CommentDto commentDto,@PathVariable Integer commentId){
+	 public ResponseEntity<CommentDto> updateComment(@RequestBody CommentDto commentDto,@PathVariable Integer commentId){
 		 CommentDto updateComment=this.commentService.updateComment(commentDto, commentId);
 		 return new ResponseEntity<CommentDto>(updateComment,HttpStatus.OK);
 		 
@@ -79,7 +79,7 @@ public class CommentController {
 	
 	//delete a comment
 	 @DeleteMapping("/comments/{commentId}")
-	 public ResponseEntity<ApiResponse> deletePost(@PathVariable Integer commentId) {
+	 public ResponseEntity<ApiResponse> deleteComment(@PathVariable Integer commentId) {
 		 this.commentService.deleteComment(commentId);
 		 return new ResponseEntity<ApiResponse>(new ApiResponse( "Comment is Successfully Deleted", true),HttpStatus.OK);
 		 

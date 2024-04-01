@@ -32,7 +32,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/api/")
+@RequestMapping("/api/posts")
 public class PostController {
 	
 	@Autowired
@@ -118,7 +118,7 @@ public class PostController {
 	 }
 	 
 	 //method to serve file
-	 @GetMapping(value = "posts/image/{imageName}",produces =MediaType.IMAGE_PNG_VALUE )
+	 @GetMapping(value = "/posts/image/{imageName}",produces =MediaType.IMAGE_PNG_VALUE )
 	 public void downloadImage(@PathVariable("imageName") String imageName, HttpServletResponse response) throws IOException {
 		 InputStream resourceInputStream=this.fileService.getResource(path, imageName);
 		 response.setContentType(MediaType.IMAGE_PNG_VALUE);
